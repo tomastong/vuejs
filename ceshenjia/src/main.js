@@ -8,8 +8,8 @@ import './tracker/tracker'
 
 Vue.config.productionTip = false
 
-// var NativeAPI = require('native-api')
-// alert(NativeAPI)
+// 这里一定要用window全局调用
+//window.NativeAPI = require('native-api')
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
 

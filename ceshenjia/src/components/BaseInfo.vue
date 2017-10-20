@@ -87,7 +87,8 @@
                 tracker2.send({
                     pagetype: 'act_ceshengjia',
                     tracking_type: 'click',
-                    eventid: eventid
+                    eventid: eventid,
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 });
 
                 this.$emit('childSay', {'nextpage':1, 'classes':n, 'sex': n});
@@ -108,7 +109,8 @@
                 tracker2.send({
                     pagetype: 'act_ceshengjia',
                     tracking_type: 'click',
-                    eventid: eventid
+                    eventid: eventid,
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 });
 
 
@@ -130,7 +132,8 @@
                 tracker2.send({
                     pagetype: 'act_ceshengjia',
                     tracking_type: 'click',
-                    eventid: eventid
+                    eventid: eventid,
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 });
 
                 this.$emit('childSay', {'nextpage':3, 'classes':n, 'type': 'salary'});
@@ -151,7 +154,8 @@
                 tracker2.send({
                     pagetype: 'act_ceshengjia',
                     tracking_type: 'click',
-                    eventid: eventid
+                    eventid: eventid,
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 });
 
 
@@ -171,7 +175,8 @@
                 tracker2.send({
                     pagetype: 'act_ceshengjia',
                     tracking_type: 'click',
-                    eventid: eventid
+                    eventid: eventid,
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 });
 
                 

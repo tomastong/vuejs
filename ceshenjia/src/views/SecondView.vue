@@ -6,7 +6,6 @@
 </template>
 
 <script>
-    import NativeAPI from 'native-api'
     import BackBar from '../components/BackBar'
     import ApplyAns from '../components/ApplyAns'
     import ApplyBtn from '../components/ApplyBtn'

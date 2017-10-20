@@ -6,6 +6,7 @@
 
 <script>
 import './assets/lib/flexible.0.3.4'
+import './assist/all'
 
 export default {
   name: 'app'

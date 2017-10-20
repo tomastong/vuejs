@@ -71,7 +71,9 @@
 
         方便调试接口，和后端彪良的php代码，在同一分支进行开发(FINANCE-4299)开发
 
-        dev-m-jr.guazi.com配置的127.0.0.1 的host指向
+        host:  dev-m-jr.guazi.com配置的127.0.0.1 的host指向
+
+        nginx: 将nginx的配置运行起来，guazi.conf包含证书支持https访问
 
     2、测试环境地址（线上）
 
@@ -80,7 +82,9 @@
         app地址：https://app2-jrtest.guazi.com/growing/ceshenjia/#/pages/first
 
 
-        代码位置一切都不发生变化，只是需要将代码提交MergeRequest合并到develop分支，宇哥合并下链接即可访问
+        代码位置一切都不发生变化，只是需要将代码提交MergeRequest合并到develop分支（相当于common），
+
+        宇哥合并下链接即可访问
 
     3、线上环境地址（实实在在的线上）
 
@@ -89,3 +93,31 @@
         app地址：https://app2-jr.guazi.com/growing/ceshenjia/#/pages/first
 
         代码会经过测试，确认没毛病后需要合并到master分支进行发布，以上就是访问地址
+
+4、目前项目遇到的问题
+
+    1、在wap中打开测一测，最后唤起登录的时候，有一个切换帐号点击无反应
+
+    2、在app中打不开app版测一测加载不出来，但是可以打开m站的测一测
+
+5、瓜子二手车wap项目
+
+    1、跑起来项目所需配置
+
+       将switchhost打开finance-wap-v2
+
+       将nginx的配置运行起来，jr.siteapi.conf, jr.wap.server.conf, finance.conf, guazi_we.conf
+
+       遇到问题，跳转跨域需要解决
+
+6、Native-Api的问题
+  
+    1、本地测试app内部是否支持相关函数
+
+    打开native-api的host（直接访问瓜子服务器的ip），在app的webview中跳转以下链接，查看支持情况
+
+    http://sta.guazi.com/c2c_client/sale.html#native-test(手机访问需打开charles代理)
+
+    另外存在的一种是stu.guazistatic.com，这种线上的是直接走cdn的，不需要配置host
+
+

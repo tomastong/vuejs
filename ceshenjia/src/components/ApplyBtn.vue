@@ -1,6 +1,6 @@
 <template>
     <div class="apply-btn">
-        <v-touch tag="div" class="applybtn" v-bind:class="{ bottom: isApp }" @tap="deal">
+        <v-touch tag="div" class="applybtn" v-bind:class="{ bottom: !isApp }" @tap="deal">
             <p class="level1" v-if="level == 'level1'">立刻买奥迪</p>
             <p class="level2" v-else-if="level == 'level2'">不服，我就要开奔驰</p>
             <p class="level3" v-else-if="level == 'level3'">不服，我就要开车</p>
@@ -43,7 +43,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '04913618'
+                        eventid: '04913618',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level2':
@@ -51,7 +52,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4798757'
+                        eventid: '4798757',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level3':
@@ -59,7 +61,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4941018'
+                        eventid: '4941018',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level4':
@@ -67,7 +70,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4188996'
+                        eventid: '4188996',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level5':
@@ -75,7 +79,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4124271'
+                        eventid: '4124271',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level6':
@@ -83,7 +88,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4148820'
+                        eventid: '4148820',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });   
                     break; 
                 case 'level7':    
@@ -91,7 +97,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4883069'
+                        eventid: '4883069',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'level8':    
@@ -99,7 +106,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_mid',
                         tracking_type: 'click',
-                        eventid: '4688945'
+                        eventid: '4688945',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
 
@@ -109,7 +117,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_done_3',
                         tracking_type: 'click',
-                        eventid: '4619099'
+                        eventid: '4619099',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
 
                     break;
@@ -118,7 +127,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_done_2',
                         tracking_type: 'click',
-                        eventid: '4549259'
+                        eventid: '4549259',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 case 'ans3':
@@ -126,7 +136,8 @@
                     tracker2.send({
                         pagetype: 'act_ceshengjia_done_1',
                         tracking_type: 'click',
-                        eventid: '4442486'
+                        eventid: '4442486',
+                        jr_from: guazi.ceshenjia.urlToObj.jr_from
                     });
                     break;
                 default:

@@ -31,7 +31,7 @@
             }
         },
         created: function(){
-            this.checkApp();  
+            // this.checkApp();  
         },
         mounted: function(){
             if(this.isApp){

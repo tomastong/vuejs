@@ -7,10 +7,10 @@
 </template>
 
 <script>
+    import NativeAPI from 'native-api'
 
     import request from 'superagent'
     import jsonp from 'superagent-jsonp'
-    import NativeAPI from 'native-api'
     import BackBar from '../components/BackBar'
     import NavTitle from '../components/NavTitle'
     import BaseInfo from '../components/BaseInfo'
@@ -83,7 +83,7 @@
 
                                     // 如果有登录，服务器直接保存成绩
                                     that.getUser(function(user){
-                                        if(user != null){
+                                        if(!!user){
                                             request
                                                .post('/check_quota/saveRecord')
                                                .send(user)
@@ -114,19 +114,21 @@
                 var userinfo = {}, that = this;
                 if(this.$route.params.isApp){
                     NativeAPI.invoke('getUserInfo', null, (data)=>{
-                        if(data.error)  userinfo = null;
-                        else{
+                        if(data && data.phone)  {
                             userinfo.sex = that.person.sex;
                             userinfo.token = data.token;
                             userinfo.score = localStorage.getItem('CESHENJIA_SCORE');
                         }
-                    })
-                    callback(userinfo); // 这里必须callback执行
+                        else
+                            userinfo = null;
+
+                        callback(userinfo); 
+                    });
                 }else{
                     request
                        .post('/check_quota/isLogin')
                        .end(function(err, res){
-                            if(err) userinfo = null;
+                            
                             if(res.ok) {
                                 var result = JSON.parse(res.text); 
                                 if(!result.status) userinfo = null;
@@ -136,10 +138,11 @@
                                     userinfo.userId = result.data.userId;
                                     userinfo.score = localStorage.getItem('CESHENJIA_SCORE');
                                 }
-                            }
-                            callback(userinfo); // 这里必须callback执行
+                                callback(userinfo); // 这里必须callback执行
+                            }else
+                                callback(null);
+                            
                        }); 
-                    
                 }
             }
         }

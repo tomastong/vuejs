@@ -31,7 +31,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '0w'
+                            cartype: '0w',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level2':
@@ -39,7 +40,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '5w-2'
+                            cartype: '5w-2',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level3':
@@ -47,7 +49,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '5w-1'
+                            cartype: '5w-1',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level4':
@@ -55,7 +58,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '15w'
+                            cartype: '15w',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level5':
@@ -63,7 +67,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '20w'
+                            cartype: '20w',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level6':
@@ -71,7 +76,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '30w'
+                            cartype: '30w',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });   
                         break; 
                     case 'level7':    
@@ -79,7 +85,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: '50w'
+                            cartype: '50w',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'level8':    
@@ -87,7 +94,8 @@
                         tracker1.send({
                             pagetype: 'act_ceshengjia_mid',
                             tracking_type: 'pageload',
-                            cartype: 'nw'
+                            cartype: 'nw',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
 
@@ -96,7 +104,8 @@
                         // 发送track数据
                         tracker1.send({
                             pagetype: 'act_ceshengjia_done_3',
-                            tracking_type: 'pageload'
+                            tracking_type: 'pageload',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
 
                         break;
@@ -104,14 +113,16 @@
                         // 发送track数据
                         tracker1.send({
                             pagetype: 'act_ceshengjia_done_2',
-                            tracking_type: 'pageload'
+                            tracking_type: 'pageload',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     case 'ans3':
                         // 发送track数据
                         tracker1.send({
                             pagetype: 'act_ceshengjia_done_1',
-                            tracking_type: 'pageload'
+                            tracking_type: 'pageload',
+                            jr_from: guazi.ceshenjia.urlToObj.jr_from
                         });
                         break;
                     default:

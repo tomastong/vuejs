@@ -6,10 +6,9 @@
 </template>
 
 <script>
-    import request from 'superagent'
-    import jsonp from 'superagent-jsonp'
-
     import NativeAPI from 'native-api'
+
+    import request from 'superagent'
     import BackBar from '../components/BackBar'
     import { bus } from '../bus/bus'
 
@@ -23,21 +22,33 @@
         },
         components : {BackBar},
         methods: {
+            getUserInfo:function(){
+                // 这里容易出现一个问题，就是这个获取app信息的会发生比较慢
+                // 容易先执行下面的callback(null)
+                var promise = new Promise(function(resolve, reject){
+                    var userinfo = {};
+                    console.log(NativeAPI.invoke);
+                    NativeAPI.invoke('getUserInfo', null, (data)=>{
+                        console.log(data);
+                        if(data && data.phone) userinfo.token = data.token;
+                        else userinfo = null;
+                        resolve(userinfo);
+                    });
+                });
+                return promise;
+            },
             // 判断是否登录，返回用户phone和id
             isLogin: function(callback){
-                var userinfo = {};
                 if(this.isApp){
-                    NativeAPI.invoke('getUserInfo', null, (data)=>{
-                        if(data.error)  userinfo = null;
-                        userinfo.userId = data.user_id;
-                        userinfo.phone = data.phone;
-                        callback(userinfo);
-                    })
-                    
+                    console.log('adfasf');
+                    this.getUserInfo().then(function(userinfo){
+                            console.log(userinfo.token);  
+                            callback(userinfo);    
+                    });
                 }else{
+                    var userinfo = {};
                     request.post('/check_quota/isLogin')
                        .end(function(err, res){
-                            if(err) userinfo = null;
                             if(res.ok) {
                                 var result = JSON.parse(res.text); 
                                 if(!result.status) userinfo = null;
@@ -45,8 +56,9 @@
                                     userinfo.phone = result.data.phone;
                                     userinfo.userId = result.data.userId;  
                                 }
-                            }
-                            callback(userinfo);
+                                callback(userinfo);
+                            }else
+                                callback(null);
                        }); 
                 }
             },
@@ -54,40 +66,45 @@
             isPlayGame: function(callback){
                 var that = this, flag = false;
                 this.isLogin(function(user){
-                    if(user == null)  flag = false;
+                    if(!!user)
                     request
                        .post('/check_quota/getNewRecord')
                        .send(user)
                        .end(function(err, res){
                             // 请求成功，而且activeResult字段存在
-                            if(err) flag = false;
-                            var result = JSON.parse(res.text); 
-                            if (result.status && result.data.activeResult){   
-                                that.reslevel = result.data.activeResult;
-                                flag = true;
-                            }
-                            flag = false;
-                            callback(flag);
-                            
+                            if(res.ok) {
+                                var result = JSON.parse(res.text); 
+                                if (result.status && result.data.activeResult){   
+                                    that.reslevel = result.data.activeResult;
+                                    flag = true;
+                                    console.log(result);
+                                }
+                                else
+                                    flag = false;
+                                callback(flag);
+                            }else
+                                callback(false);
                        });
+                    else
+                        callback(false);
                 })
-                
-
-
             },
             deployBusiness:function(){
                 var that = this;
                 this.isPlayGame(function(flag){
-                    if(flag)   // 玩过游戏
+                    if(flag){   // 玩过游戏
                         that.$router.push({name:'SecondView', params:{'level': that.reslevel, 'isApp':that.isApp}});
-                    else       // 第一次玩游戏
+                        }
+                    else{       // 第一次玩游戏，有成绩缓存
                         if(window.localStorage && localStorage.getItem('CESHENJIA_PERSON')){
                             that.reslevel = localStorage.getItem('CESHENJIA_PERSON');
                             that.$router.push({name:'SecondView', params:{'level': that.reslevel, 'isApp':that.isApp}});
+                        }else{
+                            // 无登录第一次或者第一次登录玩游戏
+                            bus.$emit('isShowVw','');
                         }
-                })
-
-
+                    }
+                });
             }
         },
         created: function(){
@@ -95,8 +112,12 @@
             bus.$on('isHaveBar',  function(data){
                 that.isApp = true;
             });
-
+        },
+        mounted: function(){
             this.deployBusiness();
+            // NativeAPI.invoke('getUserInfo', null, (data)=>{
+                // console.log(data);
+            // });
         }
     }
 </script>

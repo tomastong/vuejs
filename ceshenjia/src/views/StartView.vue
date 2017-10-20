@@ -1,5 +1,5 @@
 <template>
-    <div class="start-view">
+    <div class="start-view" v-show="showStartVw">
         <img src="../assets/start.png" alt="">
         <router-link class="action btn" :to="{ name: 'FirstView', params: { isApp: isApp }}" 
         @click.native="count()"></router-link>
@@ -10,12 +10,12 @@
     import { bus } from '../bus/bus'
 
     import request from 'superagent'
-    import jsonp from 'superagent-jsonp'
     export default{
         name: 'start-view',
         data(){
             return {
-                isApp: false
+                isApp: false,
+                showStartVw: false
             }
         },
         methods: {
@@ -24,20 +24,20 @@
                 tracker2.send({
                     tracking_type: 'click',
                     pagetype: 'act_ceshengjia',
-                    eventid: '04731577'
+                    eventid: '04731577',
+                    jr_from: guazi.ceshenjia.urlToObj.jr_from
                 })
             }
         },
         created: function(){
             var that = this;
-            bus.$on('isHaveBar',  function(data){
-                that.isApp = true;
-            });
-
+            bus.$on('isHaveBar', function(data){ that.isApp = true; });
+            bus.$on('isShowVw',  function(data){ that.showStartVw = true; });
             // 发送track数据
             tracker1.send({
                 pagetype: 'act_ceshengjia',
-                tracking_type: 'pageload'
+                tracking_type: 'pageload',
+                jr_from: guazi.ceshenjia.urlToObj.jr_from
             })
 
         }
