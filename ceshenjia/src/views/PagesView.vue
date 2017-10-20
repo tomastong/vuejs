@@ -27,9 +27,7 @@
                 // 容易先执行下面的callback(null)
                 var promise = new Promise(function(resolve, reject){
                     var userinfo = {};
-                    console.log(NativeAPI.invoke);
                     NativeAPI.invoke('getUserInfo', null, (data)=>{
-                        console.log(data);
                         if(data && data.phone) userinfo.token = data.token;
                         else userinfo = null;
                         resolve(userinfo);
@@ -40,9 +38,7 @@
             // 判断是否登录，返回用户phone和id
             isLogin: function(callback){
                 if(this.isApp){
-                    console.log('adfasf');
                     this.getUserInfo().then(function(userinfo){
-                            console.log(userinfo.token);  
                             callback(userinfo);    
                     });
                 }else{
@@ -115,9 +111,6 @@
         },
         mounted: function(){
             this.deployBusiness();
-            // NativeAPI.invoke('getUserInfo', null, (data)=>{
-                // console.log(data);
-            // });
         }
     }
 </script>

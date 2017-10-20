@@ -79,8 +79,9 @@
 
         地址：https://m-jrtest.guazi.com/growing/ceshenjia/#/pages/start
 
-        app地址：https://app2-jrtest.guazi.com/growing/ceshenjia/#/pages/first
+        wap登录就是https://m-jrtest.guazi.com  无需配置host
 
+        app地址：https://app2-jrtest.guazi.com/growing/ceshenjia/#/pages/first
 
         代码位置一切都不发生变化，只是需要将代码提交MergeRequest合并到develop分支（相当于common），
 
